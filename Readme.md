@@ -39,16 +39,19 @@ You can use any templating language, here are a few example implementations:
 **Jade**:
 
 ```jade
-ul
-  != settings.readmeDocs.user.repo.nav
+ul!= settings.readmeDocs.user.repo.nav
+div!= settings.readmeDocs.user.repo.body
 ```
 
 **EJS**:
 
 ```ejs
 <ul>
-  <%= settings.readmeDocs.user.repo.body %>
+  <%= settings.readmeDocs.user.repo.nav %>
 </ul>
+<div>
+  <%= settings.readmeDocs.user.repo.body %>
+</div>
 ```
 
 These examples both output the following HTML when rendered:
@@ -61,6 +64,16 @@ These examples both output the following HTML when rendered:
   <li><a href="#contributors">Contributors</a></li>
   <li><a href="#license">License</a></li>
 </ul>
+<div>
+  <h1>Node Bootstrap Readme Docs <sup><a href="https://npmjs.org/package/readme-docs"><img src="http://vb.teelaun.ch/getprove/node-bootstrap-readme-docs.svg" alt="Version Badge"></a></sup></h1>
+  <p>Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and your Github repo&#39;s Readme.md file.</p>
+  <p>Check out an example generated page at <a href="https://getprove.com/docs">https://getprove.com/docs</a> and its respective <a href="https://github.com/getprove/prove-api/blob/master/Readme.md">Readme.md</a>.</p>
+  <hr><h2><a href="#how-it-works" name="how-it-works" id="how-it-works">How it Works</a></h2>
+  <p>Express and Connect expose <code>app.settings</code> as <code>settings</code> in your views.</p>
+  <p>This module populates <code>app.settings.readmeDocs</code> with an object of readme&#39;s.</p>
+  <p>Simply require this module, then implement it with route middleware:</p>
+  <!-- ... continued HTML with github flavored markdown syntax ... -->
+</div>
 ```
 
 
