@@ -96,7 +96,7 @@ Some stuff goes here for the third link.
 
 ## Examples
 
-See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/master/server) folder for an Express &amp; Jade example.
+See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/master/examples) folder for an Express &amp; Jade example.
 
 
 ## Contributors
