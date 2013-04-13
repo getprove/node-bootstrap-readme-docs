@@ -28,7 +28,7 @@ var express = require('express')
   , express = express()
   , readmeDocs = require('readme-docs')(app)
 app.set('view engine', 'jade')
-app.get('/docs', readmeDocs('user', 'repo'), function(req, res, next) {
+app.get('/docs', readmeDocs('getprove', 'node-bootstrap-readme-docs'), function(req, res, next) {
   res.render('docs')
 })
 app.listen(3000)
@@ -39,18 +39,18 @@ You can use any templating language, here are a few example implementations:
 **Jade**:
 
 ```jade
-ul!= settings.readmeDocs.user.repo.nav
-div!= settings.readmeDocs.user.repo.body
+ul!= settings.readmeDocs.getprove['node-bootstrap-readme-docs'].nav
+div!= settings.readmeDocs.getprove['node-bootstrap-readme-docs'].body
 ```
 
 **EJS**:
 
 ```ejs
 <ul>
-  <%= settings.readmeDocs.user.repo.nav %>
+  <%= settings.readmeDocs.getprove['node-bootstrap-readme-docs'].nav %>
 </ul>
 <div>
-  <%= settings.readmeDocs.user.repo.body %>
+  <%= settings.readmeDocs.getprove['node-bootstrap-readme-docs'].body %>
 </div>
 ```
 
