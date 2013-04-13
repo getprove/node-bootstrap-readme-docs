@@ -1,0 +1,29 @@
+doctype 5
+html
+  head
+    meta(charset='utf8')
+    title Node Bootstrap Readme Docs
+    link(rel='stylesheet', href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/bootstrap-responsive.css')
+    link(rel='stylesheet', href='css/prettify.css')
+body(data-spy='scroll', data-target='#docs-navbar')
+  .navbar.navbar-inverse.navbar-static-top
+    .navbar-inner
+      .container
+        a(href='https://github.com/getprove/node-bootstrap-readme-docs').brand Node Bootstrap Readme Docs
+  .container
+    .row
+      .span2
+        #docs-navbar(data-spy='affix')
+          .row
+            .span2
+              ul.nav.nav-pills.nav-stacked
+                != settings.readmeDocs.getprove['node-bootstrap-readme-docs'].nav
+      .span10
+        != settings.readmeDocs.getprove['node-bootstrap-readme-docs'].body
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+  script.
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
+  script(src='js/vendor/bootstrap.min.js')
+  script(src='js/vendor/prettify.js')
+  script(src='js/main.js')
