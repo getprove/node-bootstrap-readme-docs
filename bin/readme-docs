@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 //     node-bootstrap-readme-docs
 //     Copyright (c) 2013- Prove <support@getprove.com> (https://getprove.com/)
