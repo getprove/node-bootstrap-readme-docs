@@ -1,0 +1,65 @@
+#!/usr/bin/node
+
+//     node-bootstrap-readme-docs
+//     Copyright (c) 2013- Prove <support@getprove.com> (https://getprove.com/)
+//     MIT Licensed
+
+var program = require('commander')
+  , version = require('../package').version
+  , path = require('path')
+  , jade = require('jade')
+  , fs = require('fs-extra')
+  , async = require('async')
+  , template = path.join(__dirname, 'template', 'index.jade')
+  , readmeDocs = require('../')()
+  , assets = [ 'css', 'font', 'img', 'js' ]
+  , build = path.join(process.cwd(), 'build')
+
+program
+  .version(version)
+  .option('-t, --title [title]', 'Set custom page title')
+  .option('-i, --input [path]', 'Set path to Readme file')
+  .option('-g, --github [url]', 'Set link to Github repo')
+  .parse(process.argv)
+
+var fileName = (program.input) ? program.input : path.join(process.cwd(), 'Readme.md')
+
+readmeDocs.bin(fileName, function(err, results) {
+
+  if (err) throw err
+
+  // Recursively make a build folder
+  fs.mkdirs(build, copyAssets)
+
+  // Copy all the assets to the build folder
+  function copyAssets(err) {
+    if (err) throw err
+    async.map(assets, copyAsset, createIndex)
+  }
+
+  // Copy asset
+  function copyAsset(asset, callback) {
+    fs.copy(path.join(__dirname, 'template', asset), path.join(build, asset), callback)
+  }
+
+  // Generate the index.html file
+  function createIndex(err) {
+    if (err) throw err
+    fs.readFile(template, 'utf8', function(err, template) {
+      if (err) throw err
+      var fn = jade.compile(template)
+      results.title = (program.title) ? program.title : 'Readme Docs'
+      results.github = (program.github) ? program.github : false
+      var readMe = fn(results)
+      fs.writeFile(path.join(process.cwd(), 'build', 'index.html'), readMe, finish)
+    })
+  }
+
+  // Finish
+  function finish(err) {
+    if (err) throw err
+    console.log('Compiled readme docs to ./build/')
+    process.exit(0)
+  }
+
+})

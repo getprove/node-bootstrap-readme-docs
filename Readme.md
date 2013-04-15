@@ -5,6 +5,9 @@ Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and 
 
 Check out an example generated page at <https://getprove.com/docs> and its respective [Readme.md](https://github.com/getprove/prove-api/blob/master/Readme.md).
 
+You can also view an example of this repo itself by visiting <https://getprove.github.io/node-bootstra-readme-docs>.
+
+**UPDATE**: v0.0.2 now has new route middleware implementation (see below)
 
 ## Index
 
@@ -17,6 +20,41 @@ Check out an example generated page at <https://getprove.com/docs> and its respe
 
 ## How it Works
 
+### Command Line
+
+Easily generate a Twitter Bootstrap HTML file that you can use in your `gh-pages` branch.
+
+```bash
+# install the bin script
+npm install -g readme-docs
+
+# view help if needed
+readme-docs --help
+
+# example usage #1 (build Readme.md from current working directory)
+
+## download a Readme.md file
+wget https://raw.github.com/getprove/node-bootstrap-readme-docs/master/Readme.md
+
+## generate the html (uses cwd's Readme.md file)
+readme-docs
+Compiled readme docs to ./build/
+
+# example usage #2 (set custom page title)
+readme-docs -t 'My Awesome API'
+Compiled readme docs to ./build/
+
+# example usage #3 (set custom path to file)
+readme-docs -i /some/path/to/Readme.md
+Compiled readme docs to ./build/
+
+# example usage #4 (add a link to the Github repo)
+readme-docs -g https://github.com/user/repo
+Compiled readme docs to ./build/
+```
+
+### Route Middleware
+
 Express and Connect expose `app.settings` as `settings` in your views.
 
 This module populates `app.settings.readmeDocs` with an object of readme's.
@@ -25,13 +63,23 @@ Simply require this module, then implement it with route middleware:
 
 ```js
 var express = require('express')
-  , express = express()
+  , app = express()
   , readmeDocs = require('readme-docs')(app)
+
 app.set('view engine', 'jade')
-app.get('/docs', readmeDocs('getprove', 'node-bootstrap-readme-docs'), function(req, res, next) {
-  res.render('docs')
+
+app.use(express.static(__dirname + '/public'))
+
+app.get('/', readmeDocs.middleware('getprove', 'node-bootstrap-readme-docs'), function(req, res, next) {
+  res.render('docs', {
+      title: 'Node Bootstrap Readme Docs'
+    , github: 'https://github.com/getprove/node-bootstrap-readme-docs'
+  })
 })
+
 app.listen(3000)
+
+console.log('Visit <http://localhost:3000> in your browser to view the example.')
 ```
 
 You can use any templating language, here are a few example implementations:

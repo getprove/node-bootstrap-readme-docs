@@ -1,0 +1,121 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title>Readme Docs</title><link rel="stylesheet" href="css/bootstrap.css"><link rel="stylesheet" href="css/bootstrap-responsive.css"><link rel="stylesheet" href="css/prettify.css"></head></html><body data-spy="scroll" data-target="#docs-navbar"><div class="navbar navbar-inverse navbar-static-top"><div class="navbar-inner"><div class="container"><a href="/" class="brand">Readme Docs</a></div></div></div><div class="container"><div class="row"><div class="span2"><div id="docs-navbar" data-spy="affix"><div class="row"><div class="span2"><ul class="nav nav-pills nav-stacked">
+<li class="active"><a href="#how-it-works">How it Works</a></li>
+<li><a href="#format">Format</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#license">License</a></li>
+</ul></div></div></div></div><div class="span10"><h1>Node Bootstrap Readme Docs <sup><a href="https://npmjs.org/package/readme-docs"><img src="http://vb.teelaun.ch/getprove/node-bootstrap-readme-docs.svg" alt="Version Badge"></a></sup></h1>
+<p>Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and your Github repo&#39;s Readme.md file.</p>
+<p>Check out an example generated page at <a href="https://getprove.com/docs">https://getprove.com/docs</a> and its respective <a href="https://github.com/getprove/prove-api/blob/master/Readme.md">Readme.md</a>.</p>
+
+
+<hr><h2><a href="#how-it-works" name="how-it-works" id="how-it-works">How it Works</a></h2>
+<hr><h3><a href="#command-line" name="command-line" id="command-line">Command Line</a></h3>
+<p>Easily generate a Twitter Bootstrap HTML file that you can use in your <code>gh-pages</code> branch.</p>
+<pre class="prettyprint linenums"><code class="lang-bash"># install the bin script
+npm install -g readme-docs
+
+# view help if needed
+readme-docs --help
+
+# example usage
+
+## download a Readme.md file
+wget https://raw.github.com/getprove/node-bootstrap-readme-docs/master/Readme.md
+
+## generate the html (uses cwd&#39;s Readme.md file)
+readme-docs
+
+## you can now view the HTML file (e.g. with google-chrome)
+## for ubuntu/linux users, you can launch it from command line:
+google-chrome index.html</code></pre>
+<hr><h3><a href="#route-middleware" name="route-middleware" id="route-middleware">Route Middleware</a></h3>
+<p>Express and Connect expose <code>app.settings</code> as <code>settings</code> in your views.</p>
+<p>This module populates <code>app.settings.readmeDocs</code> with an object of readme&#39;s.</p>
+<p>Simply require this module, then implement it with route middleware:</p>
+<pre class="prettyprint linenums"><code class="lang-js">var express = require(&#39;express&#39;)
+  , express = express()
+  , readmeDocs = require(&#39;readme-docs&#39;)(app)
+app.set(&#39;view engine&#39;, &#39;jade&#39;)
+app.get(&#39;/docs&#39;, readmeDocs(&#39;getprove&#39;, &#39;node-bootstrap-readme-docs&#39;), function(req, res, next) {
+  res.render(&#39;docs&#39;)
+})
+app.listen(3000)</code></pre>
+<p>You can use any templating language, here are a few example implementations:</p>
+<p><strong>Jade</strong>:</p>
+<pre class="prettyprint linenums"><code class="lang-jade">ul!= settings.readmeDocs.getprove[&#39;node-bootstrap-readme-docs&#39;].nav
+div!= settings.readmeDocs.getprove[&#39;node-bootstrap-readme-docs&#39;].body</code></pre>
+<p><strong>EJS</strong>:</p>
+<pre class="prettyprint linenums"><code class="lang-ejs">&lt;ul&gt;
+  &lt;%= settings.readmeDocs.getprove[&#39;node-bootstrap-readme-docs&#39;].nav %&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+  &lt;%= settings.readmeDocs.getprove[&#39;node-bootstrap-readme-docs&#39;].body %&gt;
+&lt;/div&gt;</code></pre>
+<p>These examples both output the following HTML when rendered:</p>
+<pre class="prettyprint linenums"><code class="lang-html">&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#how-it-works&quot;&gt;How it Works&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#format&quot;&gt;Format&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#examples&quot;&gt;Examples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#contributors&quot;&gt;Contributors&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+  &lt;h1&gt;Node Bootstrap Readme Docs &lt;sup&gt;&lt;a href=&quot;https://npmjs.org/package/readme-docs&quot;&gt;&lt;img src=&quot;http://vb.teelaun.ch/getprove/node-bootstrap-readme-docs.svg&quot; alt=&quot;Version Badge&quot;&gt;&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+  &lt;p&gt;Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and your Github repo&amp;#39;s Readme.md file.&lt;/p&gt;
+  &lt;p&gt;Check out an example generated page at &lt;a href=&quot;https://getprove.com/docs&quot;&gt;https://getprove.com/docs&lt;/a&gt; and its respective &lt;a href=&quot;https://github.com/getprove/prove-api/blob/master/Readme.md&quot;&gt;Readme.md&lt;/a&gt;.&lt;/p&gt;
+  &lt;hr&gt;&lt;h2&gt;&lt;a href=&quot;#how-it-works&quot; name=&quot;how-it-works&quot; id=&quot;how-it-works&quot;&gt;How it Works&lt;/a&gt;&lt;/h2&gt;
+  &lt;p&gt;Express and Connect expose &lt;code&gt;app.settings&lt;/code&gt; as &lt;code&gt;settings&lt;/code&gt; in your views.&lt;/p&gt;
+  &lt;p&gt;This module populates &lt;code&gt;app.settings.readmeDocs&lt;/code&gt; with an object of readme&amp;#39;s.&lt;/p&gt;
+  &lt;p&gt;Simply require this module, then implement it with route middleware:&lt;/p&gt;
+  &lt;!-- ... continued HTML with github flavored markdown syntax ... --&gt;
+&lt;/div&gt;</code></pre>
+<hr><h2><a href="#format" name="format" id="format">Format</a></h2>
+<p>Your <code>Readme.md</code> file should contain the following format:</p>
+<pre class="prettyprint linenums"><code class="lang-md">
+# Docs
+
+Some description of your awesome API.
+
+## Index
+
+* [First Link](#first-link)
+* [Second Link](#second-link)
+* [Third Link](#third-link)
+
+## First Link
+
+Some stuff goes here for the first link.
+
+## Second Link
+
+Some stuff goes here for the second link.
+
+## Third Link
+
+Some stuff goes here for the third link.</code></pre>
+<hr><h2><a href="#examples" name="examples" id="examples">Examples</a></h2>
+<p>See the <a href="https://github.com/getprove/node-bootstrap-readme-docs/tree/master/examples">examples</a> folder for an Express &amp; Jade example.</p>
+<hr><h2><a href="#contributors" name="contributors" id="contributors">Contributors</a></h2>
+<ul>
+<li>Nick Baugh <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#110;&#x69;&#102;&#116;&#x79;&#108;&#101;&#116;&#x74;&#x75;&#99;&#101;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#110;&#x69;&#102;&#116;&#x79;&#108;&#101;&#116;&#x74;&#x75;&#99;&#101;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a></li>
+</ul>
+<hr><h2><a href="#license" name="license" id="license">License</a></h2>
+<p>The MIT License</p>
+<p>Copyright (c) 2013- Prove <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#115;&#117;&#112;&#112;&#x6f;&#114;&#x74;&#64;&#103;&#101;&#x74;&#112;&#114;&#111;&#x76;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#115;&#117;&#112;&#112;&#x6f;&#114;&#x74;&#64;&#103;&#101;&#x74;&#112;&#114;&#111;&#x76;&#x65;&#x2e;&#x63;&#111;&#x6d;</a> (<a href="https://getprove.com">https://getprove.com</a>)</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+</div></div></div><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script><script src="js/vendor/bootstrap.min.js"></script><script src="js/vendor/prettify.js"></script><script src="js/main.js"></script></body>

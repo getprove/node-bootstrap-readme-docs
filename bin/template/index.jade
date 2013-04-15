@@ -24,9 +24,9 @@ body(data-spy='scroll', data-target='#docs-navbar', data-offset='61')
           .row
             .span2
               ul.nav.nav-pills.nav-stacked
-                != settings.readmeDocs.getprove['node-bootstrap-readme-docs'].nav
+                != nav
       .span10
-        != settings.readmeDocs.getprove['node-bootstrap-readme-docs'].body
+        != body
   //-. can't currently use google ajax apis since testing local doesn't work due to file:// and //ajax...
     //-.
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')0
