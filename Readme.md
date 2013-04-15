@@ -5,7 +5,7 @@ Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and 
 
 Check out an example generated page at <https://getprove.com/docs> and its respective [Readme.md](https://github.com/getprove/prove-api/blob/master/Readme.md).
 
-You can also view an example of this repo itself by visiting <https://getprove.github.io/node-bootstra-readme-docs>.
+You can also view an example of this repo itself by visiting <https://getprove.github.io/node-bootstrap-readme-docs>.
 
 **UPDATE**: v0.0.2 now has new route middleware implementation (see below)
 
