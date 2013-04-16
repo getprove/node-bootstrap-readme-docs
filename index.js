@@ -107,6 +107,8 @@ module.exports = function(app) {
       var text = $(this).text().trim()
       // Prepare the link
       var link = text.replace(/\s/g, '-').toLowerCase()
+      // Replace all characters that are not A-Z, 0-9, -, _, \s
+      link = link.replace(/[^A-Za-z0-9_-\s]+/g, '')
       $(this).html('<a href="#' + link + '" name="' + link + '" id="' + link + '">' + text + '</a>' + (($sup.length !== 0) ? ' ' + $.html($sup) : '' ) )
       $(this).before('<hr />')
     })
