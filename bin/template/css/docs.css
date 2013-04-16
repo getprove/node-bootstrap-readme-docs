@@ -7,9 +7,12 @@
 }
 
 @media(max-width:767px) {
- .affix {
-   position: static;
-   width: auto;
-   top: 0;
+  #spacer {
+    padding-top: 0;
+  }
+  .affix {
+    position: static;
+    width: auto;
+    top: 0;
   }
 }
