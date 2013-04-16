@@ -7,13 +7,13 @@ Check out an example generated page at <https://getprove.com/docs> and its respe
 
 You can also view an example of this repo itself by visiting <https://getprove.github.io/node-bootstrap-readme-docs>.
 
-**UPDATE**: v0.0.2 now has new route middleware implementation (see below)
 
 ## Index
 
 * [How it Works](#how-it-works)
 * [Format](#format)
 * [Examples](#examples)
+* [Changelog](#changelog)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -163,6 +163,14 @@ See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/m
 ## Contributors
 
 * Nick Baugh <niftylettuce@gmail.com>
+
+
+## Changelog
+
+* 0.0.4 - Resolved navigation bug (thanks to @oren)
+* 0.0.3 - Resolved node binary env in bin script (thanks to @oren)
+* 0.0.2 - Added CLI
+* 0.0.1 - Initial release
 
 
 ## License
