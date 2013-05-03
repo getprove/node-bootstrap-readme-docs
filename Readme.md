@@ -167,6 +167,7 @@ See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/m
 
 ## Changelog
 
+* 0.0.9 - Removed anchor styles for span.path
 * 0.0.8 - Added typeahead autocomplete for <h2> tags
 * 0.0.7 - Added CSS for NetDNA
 * 0.0.6 - Allowed h1 tags to get converted to anchors
