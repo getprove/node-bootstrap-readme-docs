@@ -1,7 +1,7 @@
 {
   "name": "readme-docs",
   "description": "Generate a sexy docs page with Node, Connect or Express, Twitter Bootstrap, and your Github repo's Readme.md file.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Nick Baugh <niftylettuce@gmail.com>",
   "contributors": [
     {
@@ -34,7 +34,8 @@
     "jade": "~0.28.2",
     "commander": "~1.1.1",
     "async": "~0.2.7",
-    "fs-extra": "~0.6.0"
+    "fs-extra": "~0.6.0",
+    "express": "~3.2.1"
   },
   "engines": {
     "node": "0.8.x",
