@@ -99,7 +99,7 @@ module.exports = function(app) {
     $('h2').first().remove()
 
     // Replace all header tags with anchor tags
-    $('h2, h3, h4, h5, h6').each(function(i, el) {
+    $('h1, h2, h3, h4, h5, h6').each(function(i, el) {
       // Remove <sup> from text
       var $sup = $(this).find('sup')
       if ($sup.length !== 0)

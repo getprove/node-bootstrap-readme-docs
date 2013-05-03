@@ -167,6 +167,7 @@ See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/m
 
 ## Changelog
 
+* 0.0.6 - Allowed h1 tags to get converted to anchors
 * 0.0.5 - Fixed regex parsing of headers to match Github parsing (e.g. #how-it-works? becomes #how-it-works), fixed CSS responsive issue with #spacer
 * 0.0.4 - Resolved navigation bug (thanks to @oren)
 * 0.0.3 - Resolved node binary env in bin script (thanks to @oren)
