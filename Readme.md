@@ -51,6 +51,10 @@ Compiled readme docs to ./build/
 # example usage #4 (add a link to the Github repo)
 readme-docs -g https://github.com/user/repo
 Compiled readme docs to ./build/
+
+# example usage #4 (add a custom css file)
+readme-docs -c custom.css
+Compiled readme docs to ./build/
 ```
 
 ### Route Middleware
@@ -167,6 +171,7 @@ See the [examples](https://github.com/getprove/node-bootstrap-readme-docs/tree/m
 
 ## Changelog
 
+* 0.1.0 - Added custom CSS file inclusion with `-c` option
 * 0.0.9 - Removed anchor styles for span.path
 * 0.0.8 - Added typeahead autocomplete for <h2> tags
 * 0.0.7 - Added CSS for NetDNA
